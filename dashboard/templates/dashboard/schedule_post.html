@@ -1,0 +1,25 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+<h2>Schedule a New Post</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Schedule Post</button>
+</form>
+
+<h3>Your Scheduled Posts</h3>
+<ul>
+    {% for post in scheduled_posts %}
+        <li>
+            {{ post.platform }} | "{{ post.content }}" at {{ post.scheduled_time|date:"d M Y H:i" }}
+            {% if post.is_posted %}
+                ✅ Posted
+            {% else %}
+                ⏳ Scheduled
+            {% endif %}
+        </li>
+    {% empty %}
+        <li>No posts scheduled.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

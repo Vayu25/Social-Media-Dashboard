@@ -1,0 +1,26 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+<h2>📊 Your Activity Insights</h2>
+
+<ul>
+    <li>Total Posts: {{ total_posts }}</li>
+    <li>Total Likes Received: {{ total_likes }}</li>
+    <li>Total Comments Received: {{ total_comments }}</li>
+</ul>
+
+<h3>🔥 Most Liked Post</h3>
+{% if most_liked_post %}
+    <p>{{ most_liked_post.content }}</p>
+    <small>{{ most_liked_post.likes.count }} Likes</small>
+{% else %}
+    <p>No posts yet.</p>
+{% endif %}
+
+<h3>💬 Most Commented Post</h3>
+{% if most_commented_post %}
+    <p>{{ most_commented_post.content }}</p>
+    <small>{{ most_commented_post.comments.count }} Comments</small>
+{% else %}
+    <p>No posts yet.</p>
+{% endif %}
+{% endblock %}
